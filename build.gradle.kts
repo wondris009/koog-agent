@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.4.10"
+    alias(libs.plugins.kotlin.jvm)
+    application
 }
 
 group = "cz.sg"
@@ -10,13 +11,18 @@ repositories {
 }
 
 dependencies {
-    implementation("ai.koog:koog-agents:1.3.0")
-    implementation("ai.koog:koog-agents-additions:1.3.0-beta")
+    implementation(libs.koog.agents)
+    implementation(libs.koog.agents.additions)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.slf4j:slf4j-simple:2.0.17")
+}
 
-    // Coroutines for async execution
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+application {
+    mainClass.set("cz.sg.MainKt")
+}
 
-    testImplementation(kotlin("test"))
+tasks.withType<JavaExec> {
+    standardInput = System.`in`
 }
 
 kotlin {

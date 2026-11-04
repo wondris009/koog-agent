@@ -1,0 +1,11 @@
+[versions]
+kotlin = "2.4.20"
+koog = "1.3.0"
+
+[libraries]
+# Official JetBrains Koog Artifacts
+koog-agents = { module = "ai.koog:koog-agents", version.ref = "koog" }
+koog-agents-additions = { module = "ai.koog:koog-agents-additions", version = "1.3.0-beta" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
