@@ -13,6 +13,7 @@ import ai.koog.agents.core.tools.annotations.Tool
 import ai.koog.agents.core.tools.reflect.ToolSet
 import ai.koog.prompt.executor.clients.google.GoogleModels
 import ai.koog.prompt.executor.llms.all.simpleGoogleAIExecutor
+import cz.sg.common.getGoogleApiKey
 import kotlinx.coroutines.runBlocking
 
 val calculatorAgentStrategy = strategy<String, String>("Simple calculator") {
@@ -51,7 +52,7 @@ val customToolRegistry = ToolRegistry {
 }
 
 val calculatorAgent = AIAgent(
-    promptExecutor = simpleGoogleAIExecutor(System.getenv("GEMINI_API_KEY")),
+    promptExecutor = simpleGoogleAIExecutor(getGoogleApiKey()),
     llmModel = GoogleModels.Gemini3_6Flash,
     strategy = calculatorAgentStrategy,
     systemPrompt = "Do not use dollar signs ($) or LaTeX formatting in calculation steps. Use plain text calculations.",
